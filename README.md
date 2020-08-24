@@ -4,10 +4,9 @@
 
 #### Containers and virtual machines have similar resource isolation and allocation benefits, but function differently because containers virtualize the operation instead of hardware. Containers are more portable and efficient.
 
-
-<div align="center">
-  <img width="50%" height="300" src="Images/docker-containerized-and-vm-transparent-bg.png">
-</div>
-
-
 ![Diagram_Of_how_container_runs](Images/docker-containerized-and-vm-transparent-bg.png)
+
+| **Containers**                                                                                                                                                                                                                                                                                                                                                                                                                                                | **Virtual Machines**                                                                                                                                                                                                                                                                                                                          |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Containers are an abstraction at the _**app layer**_ that packages   code and dependencies together. Multiple containers can run on the   _**same machine**_ and share the OS kernely with other containers,   each running as isolated processes in user space. Containers take   up _**less space**_ than VMs (container images are typically tens of MBs in size),   can _**handle more applications**_ and require fewer VMs and _**Operating Systems**_. | Virtual Machines (VMs) are an abstraction of _**Physical hardware**_ turning one server into many servers.   The hypervisor allows multiple VMs to run on a single machine.   Each VM includes a _**full copy of an OS**_, the application,   necessary binaries and libraries - taking up tens of GBs.   VMs can also be _**slow to boot**_. |
+
