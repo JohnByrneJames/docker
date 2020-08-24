@@ -53,7 +53,7 @@ _Minus the containers as that is what I have created_.
 
 You can either follow the tutorial Docker provides and then do this or skip it and follow my tutorial below.
 
-Now lets check if docker is running on our PC...
+Now lets check if docker is running on our PC... open your `GitBash` in Administrator and you can run the following commands...
 
 ```bash
 # print out list of docker commands ~ only works if it is installed
@@ -96,7 +96,8 @@ ___
 Now we know about these commands lets initialise our container and then view it in our browser. When running the image we create it as a container, it is assigned an **ID** and random **name** that it can be referred to by. 
 
 ```bash
-# Create a container using the NGINX image, on (-p = port) port 80 on our local machine and 80 in the web
+# Create a container using the NGINX image, on (-p = port) port 80 
+# This is on our local machine and 80 in the web
 docker run -p 80:80 <image_name>
 
 # With NGINX
@@ -113,3 +114,97 @@ If you want to know how to create a repository on [**Docker Hub**] then follow t
 
 ### Step 3
 
+If you want to set up a Docker Hub Repository then follow these steps. In this case I am going to take the NGINX image and then change the tag and push it to my own repository.
+
+_If you havent got a Docker Hub Account make [**one**](https://hub.docker.com)_
+
+_**First Create a new Repository**_
+
+1. Go to `Repositories`
+2. Click `Create Repository`
+
+![Step5](Images/Step5_SetUp.PNG)
+
+_**Now give it a good name, make it public and create it**_
+
+![Step6](Images/Step6_SetUp.PNG)
+
+Once thats done, go back to your GitBash Terminal.
+
+Lets then check our images to check if we have the NGINX image downloaded.
+
+```bash
+# List images stored on your docker
+docker images
+```
+
+![Step7](Images/Step7_SetUp.PNG)
+
+If you have NGINX then you are set, if not run the command `docker pull nginx`.
+
+**Log in to your Docker**
+
+```bash
+# This logs you in and asks for your ID and password
+docker login
+```
+
+Now lets rename it and then push it the repository we just made on our Docker Hub.
+
+```bash
+# Copy the image and rename it
+docker tag <local_image> <newname_for_copy_of_image>
+
+# In my case
+docker tag nginx johnbyrnejames/john-eng67
+
+# Push the new image you have created up to your Repo
+docker images 
+docker push johnbyrnejames/john-eng67
+```
+
+That is it you should now see the image on your Docker Hub if you go to the Repository...
+
+![Step8](Images/Step8_SetUp.PNG)
+
+Like GitHub this is a version control system and can facilitate the rollback, storage and distribution of an image. This image is now able to be pulled and run on your local machine.
+
+```bash
+# Pull your newly created image on your Repo <latest version>
+docker pull johnbyrnejames/john-eng67:latest
+
+# Now lets run a disposable container to check it (-it=interactable)
+# (--rm=removal_on_exit)
+docker run -it --rm -p 80:80 johnbyrnejames/john-eng67
+
+# Once you exit with Ctrl+C lets run a detached instance of our image
+# (-d=detached)
+docker run -d -p 80:80 johnbyrnejames/john-eng67
+```
+
+The image under your name should now be available on port 80 of local host in your browser. You can also enter the container using a shell access command, this allows you to make changes the container.
+
+```bash
+# Set environment variable to use the winpty agent with docker
+alias docker = "winpty docker"
+
+# Now lets go into your container (-it = interactable)
+docker exec -it <name_of_container/id_of_container> sh
+
+# Get name of your container with 
+docker ps -a
+```
+
+_This is where you can find your image identifiers: `name` or `id`_
+
+![Step9](Images/Step9_SetUp.PNG)
+
+So in my case
+
+```bash
+# Go into container with its name
+docker exec -it competent_vaughan sh
+
+# Go into container with its id
+docker exec -it fff6e1212532 sh
+```
