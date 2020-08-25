@@ -186,7 +186,7 @@ The image under your name should now be available on port 80 of local host in yo
 
 ```bash
 # Set environment variable to use the winpty agent with docker
-alias docker = "winpty docker"
+alias docker="winpty docker"
 
 # Now lets go into your container (-it = interactable)
 docker exec -it <name_of_container/id_of_container> sh
@@ -207,4 +207,70 @@ docker exec -it competent_vaughan sh
 
 # Go into container with its id
 docker exec -it fff6e1212532 sh
+```
+
+___
+
+# Commands:
+
+```bash
+# Copy in file to container
+docker cp index.html wonderful_bardeen:usr/share/nginx/html
+
+# Stop/ Start container
+docker stop/start wonderful_bardeen
+```
+
+Now to create that new container into an image that can be pushed to your Docker Hub you simply need to make the changes, and `commit` them, then `push` them up to the Repository.
+
+```bash
+# Commit changes with new tag:v1 / v2 Ect..
+docker commit thirsty_wing johnbyrnejames/john-eng67:new_index
+
+docker push johnbyrnejames/john-eng67:new_index
+```
+
+### Creating a Docker File.
+
+Create a file with the name `Dockerfile` and then add the following lines of code.
+
+```yaml
+# Select the base image to build your own customised node-app micro-service
+
+FROM node:alpine
+
+# Working directory inside the container
+
+WORKDIR /usr/src/app
+
+# Copy dependencies
+# Copy all packages with .json extension to app folder
+
+COPY package*.json ./
+
+# Install npm
+
+RUN npm install
+
+# 1. (. = copy whole current directory) 2. (. = to current working directory)
+
+COPY . .
+
+# expose the port (3000 default node app port)
+
+EXPOSE 3000
+
+# Start app with CMD | node
+
+CMD ["node", "app.js"]
+```
+
+This is a file that can be run when building your own image, then it and if the app1 folder is in the same directory it will copy that inside the container and run the app using the command "node app.js".
+
+```bash
+# Run Dockerfile (. = pick dockerfile from current directory)
+docker build -t johnbyrnejames/nginx-app:v1 .
+
+# push our new image to our Dockerhub . = 
+docker push johnbyrnejames/nginx-app:v1
 ```
