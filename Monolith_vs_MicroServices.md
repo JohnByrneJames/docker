@@ -54,4 +54,18 @@ Within a microservices architecture, the entire functionality is split up into i
 
 **Weaknesses**
 1. **Extra complexity**: Since a microservices architecture is a distributed system, you have to choose and set up the connections between all the modules and databases. Also, as long as such an application includes independent services, all of them have to be deployed independently.
-2. **System distribution**: 
+2. **System distribution**: Microservices architecture can get very complex; with multiple modules and databases so all the connections have to be handled carefully.
+3. **Cross-cutting concerns**: When creating a microservices application, you will have to deal with a number of cross-cutting concerns. They include externalized configuration, logging, metrics, health checks, and others.
+4. **Testing**: A multitude of independently deployable components makes testing a microservices-based solution much harder.
+
+## Use Cases of Monolith architecture
+* **Small team** - If you are a startup and your team is small, you may not need to deal with the complexity of the microservices architecture. A monolith can meet all your business needs so there is no emergency to follow the hype and start with microservices.
+* **A simple application** - Small applications which do not demand much business logic, superior scalability, and flexibility work better with monolithic architectures.
+* **No microservice expertise** - Microservices require profound expertise to work well and bring business value. If you want to start a microservices application from scratch with no technical expertise in it, most probably, it will not pay off.
+* **Quick launch** - If you want to develop your application and launch it as soon as possible, a monolithic model is the best choice. It works well when you aim to spend less initially and validate your business idea.
+
+
+## Use Cases of Micro-services architecture
+* **Microservices expertise** -  Without proper skills and knowledge, building a microservice application is extremely risky. Still, just having the architecture knowledge is not enough. You need to have DevOps and Containers experts since the concepts are tightly coupled with microservices. Also, domain modelling expertise is a must. Dealing with microservices means splitting the system into separate functionalities and dividing responsibilities.
+* **A Complex and scalable application** - The microservices architecture will make scaling and adding new capabilities to your application much easier. So if you plan to develop a large application with multiple modules and user journeys, a microservice pattern would be the best way to handle it.
+* **Enough engineering skills** - Since a microservice project comprises multiple teams responsible for multiple services, you need to have enough resources to handle all the processes.
