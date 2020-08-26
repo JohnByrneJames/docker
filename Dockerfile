@@ -6,7 +6,7 @@
 # syntax to write a Dockerfile - keywords that we use to build our Dockerfile
 # better than specifying a tag as it could change in the future
 
-FROM nginx  
+FROM nginx
 
 # We can Label our image to find out who created the image
 
